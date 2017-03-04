@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app="rocksvashiModules">
+<head lang="en">
+  <script src="http://code.angularjs.org/snapshot/angular.min.js"></script>
+  <script src="http://code.angularjs.org/snapshot/angular-animate.js"></script>
+  
+<meta charset="utf-8">
+<style>
+	body {
+		font-size: 14px;
+	}
+
+	.error {
+		color: red;		
+	}
+	
+	input[type="text"] {
+		width:300px;
+		height:30px;
+		font-size:14px;
+		font-family: sans-serif;
+		margin:10px;
+	}
+
+	input::-webkit-calendar-picker-indicator {
+	  display: none;
+	}
+
+</style>
+</head>
+
+<body ng-controller="MainCtrl">
+
+<h1>Demo on Trie Search(prefix tree) example using Angular</h1>
+ <div >
+Enter Country:
+<input class="padding-left" type="text" list="list" placeholder="e.g. country name" ng-model="countryText" ng-change="autoCompleteCountries()" ng-blur="loadStates()">
+	<datalist id="list" ng-class="{fade: startFade}" ng-show="showMe">
+		<option ng-repeat="country in countries track by $index" value="{{country}}">{{ country | captialize}}</option>
+ 	</datalist>
+ </div>	
+ 
+ <div>
+ Enter State:
+<input class="padding-left" type="text" list="list1" placeholder="e.g. state name" ng-model="stateText" ng-change="autoCompleteStates()" />
+<span ng-show="noStatesFound" class="error">No States info could be found for {{countryText}}</span>
+	<datalist id="list1" ng-class="{fade: startFade}" ng-show="showMe">
+		<option ng-repeat="state in states track by $index">{{ state | captialize}}</option>
+ 	</datalist>	
+ </div>	
+</body>
+</html>
+
+
+<!--  Load all the required JS files. -->
+<script src="app.js"></script>
+<script src="../service.trie.js"></script>
